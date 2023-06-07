@@ -6,7 +6,7 @@ import SigninPage from "./pages/SigninPage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App absolute inset-0 flex flex-col items-center justify-center">
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/signin" element={<SigninPage />} />

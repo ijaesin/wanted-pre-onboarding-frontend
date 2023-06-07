@@ -1,3 +1,9 @@
+import AuthTemplate from "../components/AuthTemplate";
+
 export default function SigninPage() {
-  return <div>로그인 페이지</div>;
+  return (
+    <div>
+      <AuthTemplate />
+    </div>
+  );
 }

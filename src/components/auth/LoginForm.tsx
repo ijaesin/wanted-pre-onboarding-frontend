@@ -3,11 +3,13 @@ import AuthTemplate from "./AuthTemplate";
 import { Link } from "react-router-dom";
 import { signIn } from "../../api/auth/auth";
 import Error from "./Error";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const onChangeEmail = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,9 +28,9 @@ export default function LoginForm() {
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      signIn({ email, password, setError });
+      signIn({ email, password, setError, navigate });
     },
-    [email, password]
+    [email, password, navigate]
   );
 
   return (

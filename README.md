@@ -24,6 +24,9 @@ npm start
 
 ## 데모 영상
 로그인 / 회원가입
+
 ![GIFMaker_me](https://github.com/ijaesin/wanted-pre-onboarding-frontend/assets/80256934/6abea9d6-d3b7-4f0e-ab51-9f0dcd7f9a3e)
+
 Todo List
+
 ![GIFMaker_me_2](https://github.com/ijaesin/wanted-pre-onboarding-frontend/assets/80256934/aaebf6e4-bc12-4b97-b742-8223318682dc)

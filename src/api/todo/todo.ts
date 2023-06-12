@@ -71,7 +71,7 @@ export const updateTodo = async (
   } catch (e) {
     if (e instanceof AxiosError) {
       const message = e.response?.data.message;
-      throw new Error(message);
+      alert(message);
     }
   }
 };
@@ -90,7 +90,7 @@ export const deleteTodo = async (id: number) => {
   } catch (e) {
     if (e instanceof AxiosError) {
       const message = e.response?.data.message;
-      throw new Error(message);
+      alert(message);
     }
   }
 };

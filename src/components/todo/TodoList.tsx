@@ -4,10 +4,12 @@ import { CgAddR } from "react-icons/cg";
 import { getTodos, createTodo } from "../../api/todo/todo";
 import React, { useEffect, useCallback, useState } from "react";
 import { TodoParams } from "../../types/todo";
+import Error from "../common/Error";
 
 export default function TodoList() {
   const [todos, setTodos] = useState<TodoParams[]>([]);
   const [newTodo, setNewTodo] = useState("");
+  const [error, setError] = useState("");
 
   const onChangeNewTodo = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,19 +21,15 @@ export default function TodoList() {
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      createTodo(newTodo);
+      createTodo(newTodo, setError);
     },
     [newTodo]
   );
 
   useEffect(() => {
-    getTodos()
-      .then((data: TodoParams[]) => {
-        setTodos([...data]);
-      })
-      .catch((e) => {
-        throw new Error(e);
-      });
+    getTodos().then((data: TodoParams[]) => {
+      setTodos([...data]);
+    });
   }, [todos]);
 
   return (
@@ -39,6 +37,7 @@ export default function TodoList() {
       <div className="mb-5 text-2xl font-bold text-center text-green-500">
         Todo List
       </div>
+      {error !== "" && <Error error={error} />}
       <form
         onSubmit={onSubmit}
         className="flex px-3 py-1 mb-5 text-lg font-bold text-green-600"

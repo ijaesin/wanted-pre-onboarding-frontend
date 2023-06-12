@@ -2,7 +2,10 @@ import { AxiosError } from "axios";
 import API from "../main";
 import getToken from "../../lib/auth/getToken";
 
-export const createTodo = async (todo: string) => {
+export const createTodo = async (
+  todo: string,
+  setError: React.Dispatch<React.SetStateAction<string>>
+) => {
   const token = getToken("accessToken");
 
   try {
@@ -22,7 +25,7 @@ export const createTodo = async (todo: string) => {
   } catch (e) {
     if (e instanceof AxiosError) {
       const message = e.response?.data.message;
-      throw new Error(message);
+      setError(message);
     }
   }
 };

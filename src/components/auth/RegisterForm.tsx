@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import AuthTemplate from "./AuthTemplate";
 import { Link } from "react-router-dom";
 import { signUp } from "../../api/auth/auth";
-import Error from "./Error";
+import Error from "../common/Error";
 import { useNavigate } from "react-router-dom";
 import validate from "../../lib/validation/validation";
 

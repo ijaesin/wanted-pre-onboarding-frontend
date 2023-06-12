@@ -1,13 +1,26 @@
+import React, { useCallback } from "react";
 import { BiPencil } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { TodoParams } from "../../types/todo";
+import { updateTodo } from "../../api/todo/todo";
 
 export default function TodoItem({ todoItem }: { todoItem: TodoParams }) {
+  const onChangeCheck = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      updateTodo(todoItem.id, todoItem.todo, !todoItem.isCompleted);
+    },
+    [todoItem]
+  );
+
   return (
     <li className="flex justify-between px-3 py-1 mb-2 text-lg font-bold text-green-600 rounded-lg">
       <div>
         <label className="">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={onChangeCheck}
+            checked={todoItem.isCompleted}
+          />
           <span className="w-full mx-4">{todoItem.todo}</span>
         </label>
       </div>

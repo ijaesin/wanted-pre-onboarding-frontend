@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import getToken from "../../lib/auth/getToken";
 import Logo from "../common/Logo";
 
-interface AuthTemplateProps {
+interface TodoTemplateProps {
   children: React.ReactNode;
 }
 
-export default function AuthTemplate({ children }: AuthTemplateProps) {
+export default function TodoTemplate({ children }: TodoTemplateProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (getToken("accessToken")) {
-      navigate("/todo");
+    if (!getToken("accessToken")) {
+      navigate("/signin");
     }
   }, [navigate]);
 

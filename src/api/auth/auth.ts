@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import API from "../main/main";
+import API from "../main";
 import { AuthParams } from "../../types/auth";
 import setToken from "../../lib/auth/setToken";
 

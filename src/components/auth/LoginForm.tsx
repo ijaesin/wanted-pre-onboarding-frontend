@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { signIn } from "../../api/auth/auth";
 import Error from "./Error";
 import { useNavigate } from "react-router-dom";
-import validate from "../validation/validation";
+import validate from "../../lib/validation/validation";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");

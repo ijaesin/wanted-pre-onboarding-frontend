@@ -1,9 +1,5 @@
-import AuthTemplate from "../components/AuthTemplate";
+import LoginForm from "../components/LoginForm";
 
 export default function SigninPage() {
-  return (
-    <div>
-      <AuthTemplate />
-    </div>
-  );
+  return <LoginForm />;
 }

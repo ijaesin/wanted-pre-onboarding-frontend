@@ -1,31 +1,16 @@
-import React, { useCallback, useState } from "react";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
+import React from "react";
 
-export default function AuthTemplate() {
-  const [toggle, setToggle] = useState(true);
+interface AuthTemplateType {
+  children: React.ReactNode;
+}
 
-  const onClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      setToggle(!toggle);
-    },
-    [toggle]
-  );
-
+export default function AuthTemplate({ children }: AuthTemplateType) {
   return (
     <div className="w-[500px] bg-gray-100 rounded-[15px] shadow-[0_0_15px_rgba(0,0,0,0.2)] py-12 px-10">
-      <div className="text-center text-green-600 font-bold text-3xl mb-8">
+      <div className="mb-8 text-3xl font-bold text-center text-green-600">
         Wanted Pre-Onboarding
       </div>
-      {toggle ? <LoginForm /> : <RegisterForm />}
-      <div>
-        <button
-          onClick={onClick}
-          className="font-bold mt-3 text-green-600 float-right"
-        >
-          Go to {toggle ? "Register" : "Login"}
-        </button>
-      </div>
+      {children}
     </div>
   );
 }

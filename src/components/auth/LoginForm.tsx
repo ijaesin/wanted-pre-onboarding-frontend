@@ -1,14 +1,16 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import AuthTemplate from "./AuthTemplate";
 import { Link } from "react-router-dom";
 import { signIn } from "../../api/auth/auth";
 import Error from "./Error";
 import { useNavigate } from "react-router-dom";
+import validate from "../validation/validation";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isValidated, setIsValidated] = useState(false);
   const navigate = useNavigate();
 
   const onChangeEmail = useCallback(
@@ -33,6 +35,14 @@ export default function LoginForm() {
     [email, password, navigate]
   );
 
+  useEffect(() => {
+    if (validate({ email, password })) {
+      setIsValidated(true);
+    } else {
+      setIsValidated(false);
+    }
+  }, [email, password]);
+
   return (
     <AuthTemplate>
       {error !== "" && <Error error={error} />}
@@ -41,7 +51,7 @@ export default function LoginForm() {
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Email ('@' 를 포함해주세요.)"
           data-testid="email-input"
           className="w-full mb-5 text-lg bg-gray-100 border-b-2 outline-none"
           value={email}
@@ -50,7 +60,7 @@ export default function LoginForm() {
         <input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Password (8자리 이상 입력해주세요.)"
           data-testid="password-input"
           className="w-full mb-5 text-lg bg-gray-100 border-b-2 outline-none"
           value={password}
@@ -60,6 +70,7 @@ export default function LoginForm() {
           type="submit"
           data-testid="signin-button"
           className="w-full text-lg font-bold text-gray-100 bg-green-500 rounded-lg cursor-pointer hover:bg-green-600"
+          disabled={!isValidated}
         >
           Login
         </button>

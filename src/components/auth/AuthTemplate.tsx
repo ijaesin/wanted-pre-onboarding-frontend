@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import getToken from "../../lib/auth/getToken";
 
 interface AuthTemplateProps {
   children: React.ReactNode;
@@ -9,7 +10,7 @@ export default function AuthTemplate({ children }: AuthTemplateProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (getToken("accessToken")) {
       navigate("/todo");
     }
   }, [navigate]);

@@ -80,14 +80,11 @@ export const deleteTodo = async (id: number) => {
   const token = getToken("accessToken");
 
   try {
-    const response = await API.delete(
-      `${process.env.REACT_APP_API_HOST}/todos/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await API.delete(`/todos/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return response.data;
   } catch (e) {

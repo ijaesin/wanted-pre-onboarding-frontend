@@ -2,12 +2,19 @@ import React, { useCallback } from "react";
 import { BiPencil } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { TodoParams } from "../../types/todo";
-import { updateTodo } from "../../api/todo/todo";
+import { updateTodo, deleteTodo } from "../../api/todo/todo";
 
 export default function TodoItem({ todoItem }: { todoItem: TodoParams }) {
   const onChangeCheck = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       updateTodo(todoItem.id, todoItem.todo, !todoItem.isCompleted);
+    },
+    [todoItem]
+  );
+
+  const onRemove = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      deleteTodo(todoItem.id);
     },
     [todoItem]
   );
@@ -29,7 +36,7 @@ export default function TodoItem({ todoItem }: { todoItem: TodoParams }) {
           <span className="hidden">수정</span>
           <BiPencil />
         </button>
-        <button data-testid="delete-button" name="delete">
+        <button data-testid="delete-button" name="delete" onClick={onRemove}>
           <span className="hidden">삭제</span>
           <RiDeleteBinLine />
         </button>

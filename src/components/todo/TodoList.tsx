@@ -22,6 +22,7 @@ export default function TodoList() {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       createTodo(newTodo, setError);
+      setNewTodo("");
     },
     [newTodo]
   );
